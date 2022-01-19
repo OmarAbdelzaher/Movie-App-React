@@ -6,14 +6,7 @@ export default function MoviesList() {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     axiosInstance
-      .get("/movie/popular", {
-        // params: {
-        //   limit: 5,
-        // },
-        // headers: {
-        //   "Accept-language": "ar",
-        // },
-      })
+      .get("/movie/popular")
       .then((res) => {
     setMovies(res.data)
     console.log(res,"inside then")        
