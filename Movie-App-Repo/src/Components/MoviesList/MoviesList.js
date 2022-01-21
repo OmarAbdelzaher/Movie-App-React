@@ -1,50 +1,67 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
+// import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { axiosInstance } from "../../network/axiosInstance";
-import favIcon from "../../assets/love.png";
 import { useSelector, useDispatch } from "react-redux";
+import { LangContext } from "../../Context/langContext";
 import { AddFavorite } from "../../store/actions/FavoriteActions";
-
+import { getMoviesList } from "../../store/actions/getMoviesAction";
+import favIcon from "../../assets/love.png";
 import "./list.css";
+// import { axiosInstance } from "../../network/axiosInstance";
 
 export default function MoviesList() {
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
+  const { contextLanguage, setContextLanguage } = useContext(LangContext);
   let fav = useSelector((state) => state.favorites);
+  let Movies = useSelector((state) => state.moviesList);
   const dispatch = useDispatch();
 
+    // useEffect(() => {
+    //     axiosInstance
+    //         .get("/movie/popular")
+    //         .then((res) => {
+    //             setMovies(res.data.results)
+    //         })
+    //         .catch((err) => {
+    //         console.log("error",err)
+    //         })
+    // }, []);
+
     useEffect(() => {
-        axiosInstance
-            .get("/movie/popular")
-            .then((res) => {
-                setMovies(res.data.results)
-            })
-            .catch((err) => {
-            console.log("error",err)
-            })
+      dispatch(getMoviesList());
     }, []);
-  
+
+
   const Add_Remove_Fav = (Allmovie) => {
 
-    const index = fav.indexOf(Allmovie);
-    console.log(index,"index")
-    console.log(fav,"fav")
-    if ( index === -1 ){
+    const foundMovie = fav.filter((movie)=> movie.id === Allmovie.id)
+    console.log(foundMovie,"foundMovie")
+        
+    if ( foundMovie.length === 0 ){
       fav.push(Allmovie);
-      console.log(fav,"new")
       dispatch(AddFavorite(fav));
-      // console.log(fav,"fav after") 
     }
     else{
-      fav.splice(index,1)
-      console.log(fav,"existed")    
+      console.log(foundMovie,"foundMovie");
+      console.log(fav,"existed");
+      const arr = fav.filter((movie)=> movie.id !== foundMovie[0].id)
+      console.log(arr,"before disatch arr");   
+      dispatch(AddFavorite(arr));
     }
   };
+  
+
   return (
       <div className="container">
           
           <h1 style={{color: "#fff"}}>Movies</h1>
+          <h1 style={{color: "#fff"}}>Context language : {contextLanguage}</h1>
+          <button className="btn-primary" onClick={() => setContextLanguage("ar")}>
+            Context Language
+          </button>
           <div className="row">
-              {movies.map((movie) => {
+              {Movies.map((movie) => {
                   return (
                       <div className=" card col-3 bg-dark m-auto" style={{ width: "18 rem"}} key={movie.id}>
                           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card-img-top" alt={movie.title} />

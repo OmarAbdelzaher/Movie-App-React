@@ -8,9 +8,13 @@ import RegisterForm from "./Pages/register";
 import Notfound from "./Pages/notfound";
 import MoviesData from "./Components/MoviesData/MoviesData";
 import MoviesList from "./Components/MoviesList/MoviesList";
+import { LangContext } from "./Context/langContext";
+import { useState } from "react";
 
 function App() {
+  const [contextLanguage, setContextLanguage] = useState("en");
   return (
+    <LangContext.Provider value={{ contextLanguage, setContextLanguage }}>
     <BrowserRouter>
       <Navbar />
       <div className="container my-5">
@@ -24,6 +28,7 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
+    </LangContext.Provider>
   );
 }
 

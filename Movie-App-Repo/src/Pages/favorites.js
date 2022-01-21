@@ -1,31 +1,49 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { axiosInstance } from "../network/axiosInstance";
+// import { axiosInstance } from "../network/axiosInstance";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Favorites() {
   const favList = useSelector((state) => state.favorites);
-  const [movie,setMovie] = useState([])
+
+  // const [movie,setMovie] = useState([])
   // var favMovies = []
-  function getDetails(id){
-    axiosInstance.get(`/movie/${id}`)
-    .then((res) =>{
-      setMovie([...movie,
-        res.data])
+  // let getDetails = (id) => {
+
+  //   axiosInstance.get(`/movie/${id}`)
+  //   .then((res) =>{
+  //     setMovie([...movie,
+  //       res.data])
+      
+    // console.log(movie,"inside getDetails")
       // favMovies.push(res.data)
-    })
-    .catch((err) => console.log(err));
-  }
+  //   })
+  //   .catch((err) => console.log(err));
+  // }
+
+  // getDetails(favList[1])
+  // useEffect(() => {
+  //     favList.forEach(element => {
+  //           console.log(element)
+  //           getDetails(element)
+  //         });          
+  //       },
+  //       []);
   
-  favList.forEach(element => {
-    getDetails(element)
-  });
+  useEffect(() => {
+      },
+      [favList]);
+
+  //     console.log(movie,"outside getDetails")
+
+  // console.log(favList)
 
   return (
     <div className="container" style={{color:"#fff"}}>
       <h1 >Favorites</h1>
       <div className="row">
-        {movie.map((fav) => {
+        {favList.map((fav) => {
           return (
             <div 
               className=" card col-3 bg-dark m-auto"

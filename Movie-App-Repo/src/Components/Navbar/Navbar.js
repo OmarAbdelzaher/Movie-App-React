@@ -1,22 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
-// import logo from "../../assets/logo.svg";
 import appLogo from "../../assets/logo.svg";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 export default function Navbar() {
-  // const language = useSelector((state) => state.lang);
+  
   let count = useSelector((state) => state.favorites)
-  // let len = Object.keys(count).length
-
   useEffect(() => {   
       },
       [count]);
   
-  //     console.log(count,Object.keys(count).length)
-  // console.log(len)
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{borderBottom:"1px solid #000"}}>
       <div className="container-fluid ">
@@ -62,11 +57,6 @@ export default function Navbar() {
                 Register
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <span className="nav-link" to="/">
-                {language}
-              </span>
-            </li> */}
           </ul>
         </div>
           {/* <form className="form-inline my-2 my-lg-0" style={{border : "2px solid red"}}>
