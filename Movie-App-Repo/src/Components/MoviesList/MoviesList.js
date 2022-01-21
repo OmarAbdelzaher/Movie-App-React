@@ -12,9 +12,13 @@ import "./list.css";
 
 export default function MoviesList() {
   // const [movies, setMovies] = useState([]);
+
   const { contextLanguage, setContextLanguage } = useContext(LangContext);
-  let fav = useSelector((state) => state.favorites);
-  let Movies = useSelector((state) => state.moviesList);
+  
+  let Movies = useSelector((state) => state.movieList.moviesList);
+  
+  let fav = useSelector((state) => state.fav.favorites);
+  
   const dispatch = useDispatch();
 
     // useEffect(() => {
@@ -27,7 +31,7 @@ export default function MoviesList() {
     //         console.log("error",err)
     //         })
     // }, []);
-
+    
     useEffect(() => {
       dispatch(getMoviesList());
     }, []);

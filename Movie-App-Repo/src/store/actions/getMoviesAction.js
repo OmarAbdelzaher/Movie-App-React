@@ -1,7 +1,7 @@
 import { axiosInstance } from "../../network/axiosInstance";
 
 // Actions using Redux Thunk
-export const getMoviesList = () => (dispatch) => {
+export const getMoviesList = () => async (dispatch) => {
     return axiosInstance
       .get("/movie/popular")
       .then((res) =>

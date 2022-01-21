@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Favorites() {
-  const favList = useSelector((state) => state.favorites);
+  const favList = useSelector((state) => state.fav.favorites);
 
   // const [movie,setMovie] = useState([])
   // var favMovies = []

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 export default function Navbar() {
   
-  let count = useSelector((state) => state.favorites)
+  let count = useSelector((state) => state.fav.favorites)
   useEffect(() => {   
       },
       [count]);
