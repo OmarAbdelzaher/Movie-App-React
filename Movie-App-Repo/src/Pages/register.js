@@ -58,7 +58,7 @@ export default function RegisterForm() {
                 ? "This field is required"
                 : e.target.value.length < 3
                 ? "Minimum length is 3 characters"
-                : RegisterData.isvalid == false
+                : RegisterData.isvalid === false
                 ? "Invalid Email : must contain @ and .com"
                 : null,
         });
@@ -84,7 +84,7 @@ export default function RegisterForm() {
                 ? "This field is required"
                 : e.target.value.length < 8
                 ? "Minimum length is 8 characters"
-                : RegisterData.ispassvalid == false
+                : RegisterData.ispassvalid === false
                 ? "The Password must contain at least one lowercase , one uppercase , at least one digit and special character"
                 : null,
         });

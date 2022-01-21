@@ -1,0 +1,9 @@
+.fav{
+    width: 1.2rem; 
+    margin-left: 8vw
+}
+
+.fav:hover{
+    fill: aqua;
+    cursor: pointer;
+}
